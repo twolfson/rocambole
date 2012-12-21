@@ -25,7 +25,7 @@ describe('parse', function () {
 
 
     it('should work with any kind of line breaks & spaces', function () {
-        var ast = walker.parse('\nvar n\r\n=\n10;\r\r  \t\t  \n');
+        var ast = walker.parse('\nvar n\r\n=\n10;\r\r  \t\t  \n', {loc : true});
 
         var br_1 = ast.startToken;
         expect( br_1.type ).to.be( 'LineBreak' );
@@ -218,7 +218,7 @@ describe('parse', function () {
         });
 
         it('should add range and loc info to comment tokens', function () {
-            var ast = walker.parse('\n/* foo\n  bar\n*/\nfunction foo(){ return "bar"; }\n// end');
+            var ast = walker.parse('\n/* foo\n  bar\n*/\nfunction foo(){ return "bar"; }\n// end', {loc:true});
             var blockComment = ast.startToken.next;
             expect( blockComment.range ).to.eql( [1, 16] );
             expect( blockComment.loc ).to.eql({
