@@ -349,6 +349,7 @@ describe('parse', function () {
             }).not.throwError();
         });
         it.only('should return augmented AST', function () {
+            var ast = rocambole.parse('a = [null]');
             var ast = rocambole.parse('a = [,]');
             expect(ast).to.eql({
                 type: 'Program',

@@ -364,6 +364,7 @@ function recursiveWalk(node, fn, parent, prev, next){
         }
 
         // inception
+        console.log('child', child);
         if (typeof child.type === 'string') { // faster than boolean coercion
             recursiveWalk(child, fn, node);
         } else if ( typeof child.length === 'number' ) { // faster than Array.isArray and boolean coercion
