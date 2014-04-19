@@ -345,11 +345,11 @@ describe('parse', function () {
     describe('array literal with empty commas', function () {
         it('should not throw if program has array literals with empty commas', function () {
             expect(function(){
-                rocambole.parse('a = [,];');
+                rocambole.parse('a = [,]');
             }).not.throwError();
         });
-        it('should return augmented AST', function () {
-            var ast = rocambole.parse('a = [,];');
+        it.only('should return augmented AST', function () {
+            var ast = rocambole.parse('a = [,]');
             expect(ast).to.eql({
                 type: 'Program',
                 body: [],
