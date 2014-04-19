@@ -341,5 +341,27 @@ describe('parse', function () {
     });
 
 
+    // https://github.com/millermedeiros/rocambole/issues/15
+    describe('array literal with empty commas', function () {
+        it('should not throw if program has array literals with empty commas', function () {
+            expect(function(){
+                rocambole.parse('a = [,];');
+            }).not.throwError();
+        });
+        it('should return augmented AST', function () {
+            var ast = rocambole.parse('a = [,];');
+            expect(ast).to.eql({
+                type: 'Program',
+                body: [],
+                range: [0,0],
+                comments: [],
+                tokens: [],
+                startToken: null,
+                endToken: null,
+                depth: 0
+            });
+        });
+    });
+
 });
 
